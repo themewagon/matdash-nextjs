@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useContext } from "react";
-import { usePathname } from "next/navigation";
 import { FaQuoteLeft } from "react-icons/fa";
 import { GoDot } from "react-icons/go";
 import { Icon } from "@iconify/react";
@@ -23,19 +22,21 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-const BlogDetailData = () => {
-  const { posts, setLoading, addComment }: BlogContextProps =
+interface BlogDetailDataProps {
+  slug: string;
+}
+
+const BlogDetailData = ({ slug }: BlogDetailDataProps) => {
+  const { posts, setLoading, addComment, fetchPostById }: BlogContextProps =
     useContext(BlogContext);
-  const pathName = usePathname();
-  const getTitle: string | any = pathName.split("/").pop();
-  const post = posts.find(
-    (p) =>
-      p.title
-        .toLowerCase()
-        .replace(/ /g, "-")
-        .replace(/[^\w-]+/g, "") === getTitle
-  );
+  const post = posts.find((p) => p.id === parseInt(slug));
   const [replyTxt, setReplyTxt] = React.useState("");
+
+  useEffect(() => {
+    if (slug) {
+      fetchPostById(parseInt(slug));
+    }
+  }, [slug, fetchPostById]);
 
   const onSubmit = () => {
     if (!post || !post.id) return;

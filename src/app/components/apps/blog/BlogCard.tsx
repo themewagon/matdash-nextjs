@@ -25,10 +25,7 @@ const BlogCard = ({ post }: Btype) => {
   const { coverImg, title, view, comments, category, author, createdAt }: any =
     post;
 
-  const linkTo = title
-    .toLowerCase()
-    .replace(/ /g, "-")
-    .replace(/[^\w-]+/g, "");
+  const linkTo = post.id;
 
   return (
     <div className="lg:col-span-4 md:col-span-6 col-span-12">

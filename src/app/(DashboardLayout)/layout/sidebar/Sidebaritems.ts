@@ -1109,8 +1109,8 @@ const SidebarContent: MenuItem[] = [
     ],
   },
   {
+    isPro: true,
     heading: "Extra",
-    isPro: false,
     children: [
       {
         name: "Icons",

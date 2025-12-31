@@ -108,7 +108,7 @@ const SidebarLayout = ({ onClose }: { onClose?: () => void }) => {
         <AMLogo component={Link} href='/' img=''>
           {/* <FullLogo /> */}
           <Image
-            src="/images/logos/dark-logo.svg"
+            src="/matdash-nextjs/images/logos/dark-logo.svg"
             alt="logo"
             width={135}
             height={40}
@@ -119,7 +119,7 @@ const SidebarLayout = ({ onClose }: { onClose?: () => void }) => {
 
       {/* Sidebar items */}
 
-      <SimpleBar className='h-[calc(100vh)]'>
+      <SimpleBar className='h-[calc(100vh-10vh)]'>
         <div className='px-6'>
           {SidebarContent.map((section, index) => (
             <div key={index}>

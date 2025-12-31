@@ -1,6 +1,7 @@
 'use client'
 import React, { createContext, useState, useEffect, ReactNode, Dispatch, SetStateAction } from 'react';
 import { BlogPostType, BlogType } from '@/app/(DashboardLayout)/types/blog';
+import { BlogPost } from '@/app/data/blog';
 
 export interface BlogContextProps {
     posts: BlogPostType[];
@@ -41,14 +42,9 @@ export const BlogProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const fetchPosts = async () => {
         try {
             setLoading(true);
-            const res = await fetch('/api/blog');
-            const data = await res.json();
-            if (data.status === 200) {
-                setPosts(data.data);
-                setError(null);
-            } else {
-                setError(data.msg);
-            }
+            // Use static data instead of API
+            setPosts(BlogPost);
+            setError(null);
         } catch (err) {
             setError(err);
         } finally {
@@ -60,13 +56,13 @@ export const BlogProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const fetchPostById = async (id: number) => {
         try {
             setLoading(true);
-            const res = await fetch(`/api/blog/${id}`);
-            const data = await res.json();
-            if (data.status === 200) {
-                setSelectedPost(data.data);
+            // Find post from static data
+            const post = BlogPost.find(p => p.id === id);
+            if (post) {
+                setSelectedPost(post);
                 setError(null);
             } else {
-                setError(data.msg);
+                setError("Post not found");
             }
         } catch (err) {
             setError(err);
@@ -75,23 +71,14 @@ export const BlogProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
     };
 
-    // Add comment locally + optionally call API
+    // Add comment locally
     const addComment = async (postId: number, newComment: BlogType) => {
         setPosts((prevPosts) =>
             prevPosts.map((post) =>
                 post.id === postId ? { ...post, comments: [newComment, ...(post.comments || [])] } : post
             )
         );
-
-        try {
-            await fetch('/api/blog', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ postId, comment: newComment })
-            });
-        } catch (err) {
-            console.error("Failed to save comment:", err);
-        }
+        // No API call needed for static site
     };
 
     // Fetch posts initially

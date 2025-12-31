@@ -36,10 +36,10 @@ const UserProfile = () => {
         email: "mathew.anderson@gmail.com",
         phone: "(347) 528-1947",
         position: "Team Leader",
-        facebook: "https://www.facebook.com/wrappixel",
-        twitter: "https://twitter.com/wrappixel",
-        github: "https://github.com/wrappixel",
-        dribbble: "https://dribbble.com/wrappixel"
+        facebook: "#!",
+        twitter: "#!",
+        github: "#!",
+        dribbble: "#!"
     });
 
     const [address, setAddress] = useState({
@@ -72,10 +72,10 @@ const UserProfile = () => {
     };
 
     const socialLinks = [
-        { href: "https://www.facebook.com/wrappixel", icon: "streamline-logos:facebook-logo-2-solid" },
-        { href: "https://twitter.com/wrappixel", icon: "streamline-logos:x-twitter-logo-solid" },
-        { href: "https://github.com/wrappixel", icon: "ion:logo-github" },
-        { href: "https://dribbble.com/wrappixel", icon: "streamline-flex:dribble-logo-remix" },
+        { href: "#!", icon: "streamline-logos:facebook-logo-2-solid" },
+        { href: "#!", icon: "streamline-logos:x-twitter-logo-solid" },
+        { href: "#!", icon: "ion:logo-github" },
+        { href: "#!", icon: "streamline-flex:dribble-logo-remix" },
     ];
 
     return (
@@ -85,7 +85,7 @@ const UserProfile = () => {
                 <CardBox className="p-6 bg-background overflow-hidden border-none rounded-xl shadow-xs">
                     <div className="flex flex-col sm:flex-row items-center gap-6 rounded-xl relative w-full words-break">
                         <div>
-                            <Image src={"/images/profile/user-1.jpg"} alt="image" width={80} height={80} className="rounded-full" />
+                            <Image src={"/matdash-nextjs/images/profile/user-1.jpg"} alt="image" width={80} height={80} className="rounded-full" />
                         </div>
                         <div className="flex flex-wrap gap-4 justify-center sm:justify-between items-center w-full">
                             <div className="flex flex-col sm:text-left text-center gap-1.5">

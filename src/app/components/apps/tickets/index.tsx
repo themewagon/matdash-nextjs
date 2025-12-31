@@ -4,6 +4,7 @@ import CardBox from "@/app/components/shared/CardBox";
 import TicketFilter from "@/app/components/apps/tickets/TicketFilter";
 import TicketListing from "@/app/components/apps/tickets/TicketListing";
 import { TicketType } from "@/app/(DashboardLayout)/types/ticket";
+import { TicketData } from "@/app/data/tickets";
 
 const TicketsApp = () => {
   const [tickets, setTickets] = useState<TicketType[]>([]);
@@ -13,13 +14,8 @@ const TicketsApp = () => {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const res = await fetch("/api/ticket", {
-          headers: {
-            browserrefreshed: "false",
-          },
-        });
-        const json = await res.json();
-        setTickets(json.data);
+        // Use static data
+        setTickets(TicketData);
       } catch (err) {
         console.error("Error fetching tickets:", err);
       }
@@ -29,10 +25,7 @@ const TicketsApp = () => {
 
   const deleteTicket = async (id: number) => {
     try {
-      await fetch("/api/ticket", {
-        method: "DELETE",
-        body: JSON.stringify({ id }),
-      });
+      // Delete locally for static site
       setTickets((prev) => prev.filter((t) => t.Id !== id));
     } catch (err) {
       console.error("Error deleting ticket:", err);

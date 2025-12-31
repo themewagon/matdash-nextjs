@@ -15,7 +15,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 const ProductRevenue = () => {
   const ProductTableData = [
     {
-      img: "/images/products/dash-prd-1.jpg",
+      img: "/matdash-nextjs/images/products/dash-prd-1.jpg",
       name: "Minecraf App",
       seller: "Jason Roy",
       process: "73.2%",
@@ -24,7 +24,7 @@ const ProductRevenue = () => {
       statustext: "Low",
     },
     {
-      img: "/images/products/dash-prd-2.jpg",
+      img: "/matdash-nextjs/images/products/dash-prd-2.jpg",
       name: "Web App Project",
       seller: "Mathew Flintoff",
       process: "73.2%",
@@ -33,7 +33,7 @@ const ProductRevenue = () => {
       statustext: "Medium",
     },
     {
-      img: "/images/products/dash-prd-3.jpg",
+      img: "/matdash-nextjs/images/products/dash-prd-3.jpg",
       name: "Modernize Dashboard",
       seller: "Anil Kumar",
       process: "73.2%",
@@ -42,7 +42,7 @@ const ProductRevenue = () => {
       statustext: "Very High",
     },
     {
-      img: "/images/products/dash-prd-4.jpg",
+      img: "/matdash-nextjs/images/products/dash-prd-4.jpg",
       name: "Dashboard Co",
       seller: "George Cruize",
       process: "73.2%",

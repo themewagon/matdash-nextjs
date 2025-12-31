@@ -19,10 +19,7 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
   const { coverImg, title, view, comments, category, author, createdAt }: any =
     post;
 
-  const linkTo = title
-    .toLowerCase()
-    .replace(/ /g, "-")
-    .replace(/[^\w-]+/g, "");
+  const linkTo = post.id;
 
   const mainPost = index === 0;
 

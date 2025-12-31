@@ -10,6 +10,7 @@ import { NotesType } from '@/app/(DashboardLayout)/types/apps/notes'
 import AddNotes from './AddNotes'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent } from '@/components/ui/sheet'
+import { NotesData } from '@/app/data/notes'
 
 interface colorsType {
   lineColor: string
@@ -29,9 +30,8 @@ const NotesApp = () => {
   const fetchNotes = async () => {
     try {
       setLoading(true)
-      const response = await fetch('/api/notes')
-      const data = await response.json()
-      setNotes(data?.data || [])
+      // Use static data instead of API
+      setNotes(NotesData)
     } catch (err) {
       console.error('Failed to fetch notes:', err)
     } finally {
@@ -40,12 +40,7 @@ const NotesApp = () => {
   }
 
   const handleResetTickets = async () => {
-    await fetch('/api/notes', {
-      method: 'GET',
-      headers: {
-        browserRefreshed: 'true',
-      },
-    })
+    // Reset to static data
     fetchNotes()
   }
 
@@ -103,12 +98,7 @@ const NotesApp = () => {
         note.id === id ? { ...note, title, color } : note
       )
     )
-
-    fetch(`/api/notes/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, color }),
-    }).catch((err) => console.error('Failed to update note:', err))
+    // No API call for static site
   }
 
   useEffect(() => {
@@ -119,23 +109,16 @@ const NotesApp = () => {
 
   const addNote = async (note: { title: string; color: string }) => {
     try {
-      const response = await fetch('/api/notes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(note),
-      })
-
-      const result = await response.json()
-      console.log('API POST response:', result)
-
-      if (Array.isArray(result.data)) {
-        setNotes(result.data)
-        setSelectedNoteId(result.data[result.data.length - 1].id)
-      } else {
-        const newNote: NotesType = result.data
-        setNotes((prev) => [...prev, newNote])
-        setSelectedNoteId(newNote.id)
-      }
+      // Simulate adding note locally
+      const newNote: NotesType = {
+        id: Math.max(...notes.map(n => n.id)) + 1,
+        title: note.title,
+        color: note.color,
+        datef: new Date().toISOString(),
+        deleted: false,
+      };
+      setNotes((prev) => [...prev, newNote]);
+      setSelectedNoteId(newNote.id);
     } catch (err) {
       console.error('Failed to add note:', err)
     }
